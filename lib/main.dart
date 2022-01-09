@@ -7,9 +7,14 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Startup Name Generator',
-      home: RandomWords(),
+      theme: ThemeData(
+        // Theme setter for the whole app
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.black, foregroundColor: Colors.white),
+      ),
+      home: const RandomWords(),
     );
   }
 }
@@ -32,10 +37,46 @@ class _RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
         title: const Text('Startup Name Generator'),
+        actions: [
+          // Creates action method where saved suggestions can be stored
+          IconButton(
+            onPressed:
+                _pushSaved, // When this button is pushed, it takes you to this page.
+            icon: const Icon(Icons.list),
+            tooltip: "Saved Suggestions",
+          ),
+        ],
       ),
       body: _buildSuggestions(),
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (context) {
+        final tiles = _saved.map((pair) {
+          return ListTile(
+            title: Text(
+              pair.asPascalCase,
+              style: _biggerFont,
+            ),
+          );
+        });
+        final divided = tiles.isNotEmpty
+            ? ListTile.divideTiles(
+                context: context,
+                tiles: tiles,
+              ).toList()
+            : <Widget>[];
+
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Saved Suggestions'),
+          ),
+          body: ListView(children: divided),
+        );
+      }),
     );
   }
 
@@ -67,7 +108,7 @@ class _RandomWordsState extends State<RandomWords> {
             ? Icons.favorite
             : Icons
                 .favorite_border, // An if-else statement. If it's part of alreadySaved, then make it "favorite and heart filled", else make it just heart border
-        color: alreadySaved ? Colors.red : null, // Syntax
+        color: alreadySaved ? Colors.black : null, // Syntax
         semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
       ),
       onTap: () {
