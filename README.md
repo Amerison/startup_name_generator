@@ -1,6 +1,7 @@
 # startup_name_generator
 
-Startup name generator project created in Flutter.
+Startup name generator project I created. 
+Tools: Flutter, Dart
 
 
 ![Homepage](https://live.staticflickr.com/65535/51812645453_0c60f67fda_k.jpg)
