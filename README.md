@@ -3,7 +3,7 @@
 Startup name generator project created in Flutter.
 
 
-![alt text](https://www.flickr.com/photos/192294564@N08/51811581222/in/dateposted-public/)
+![Homepage](https://live.staticflickr.com/65535/51812645453_0c60f67fda_k.jpg)
 
-![alt text](https://www.flickr.com/photos/192294564@N08/51811581222/in/dateposted-public/)
+![View saved suggestions](https://live.staticflickr.com/65535/51811581222_98dbc712ef_k.jpg)
 
